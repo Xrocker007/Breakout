@@ -62,7 +62,7 @@ void Ball::update(float dt)
     // lose life bounce
     if (position.y > windowDimensions.y)
     {
-        _sprite.setPosition(_gameManager->getPaddle()->getPosition(), 300);
+        _sprite.setPosition(_gameManager->getPaddle()->getPosition().x + (_gameManager->getPaddle()->getBounds().width / 3), _gameManager->getPaddle()->getPosition().y - 50);
         _direction = { 0.2, 1 };
         _gameManager->loseLife();
     }

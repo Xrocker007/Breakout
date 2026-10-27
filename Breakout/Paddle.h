@@ -16,7 +16,7 @@ public:
     sf::FloatRect getBounds() const;
     void setWidth(float coeff, float duration);
 
-    float getPosition();
+    sf::Vector2f getPosition();
 
     void stun(float duration);
 

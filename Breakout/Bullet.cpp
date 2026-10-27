@@ -39,7 +39,7 @@ void Bullet::update(float dt)
         // collision with paddle
         if (_sprite.getGlobalBounds().intersects(_gameManager->getPaddle()->getBounds()))
         {
-            _gameManager->getPaddle()->stun(1.f);
+            _gameManager->getPaddle()->stun(0.75f);
         }
     }
 

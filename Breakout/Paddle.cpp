@@ -29,6 +29,10 @@ void Paddle::moveRight(float dt)
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && position < _window->getSize().x - _width && !_isStunned)
     {
+        if (_isStunned)
+        {
+
+        }
         _sprite.move(sf::Vector2f(dt * PADDLE_SPEED, 0));
     }
 }
@@ -86,13 +90,16 @@ void Paddle::setWidth(float coeff, float duration)
     _sprite.setPosition(newX, _sprite.getPosition().y);
 }
 
-float Paddle::getPosition()
+sf::Vector2f Paddle::getPosition()
 {
-    return _sprite.getPosition().x;
+    return _sprite.getPosition();
 }
 
 void Paddle::stun(float duration)
 {
-    _isStunned = true;
-    _timeStunned = duration;
+    if (!_isStunned)
+    {
+        _isStunned = true;
+        _timeStunned = duration;
+    }
 }
