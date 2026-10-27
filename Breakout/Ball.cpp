@@ -1,8 +1,8 @@
 #include "Ball.h"
 #include "GameManager.h" // avoid cicular dependencies
 
-Ball::Ball(sf::RenderWindow* window, float velocity, GameManager* gameManager, Paddle* paddle)
-    : _window(window), _velocity(velocity), _gameManager(gameManager),_paddle(paddle),
+Ball::Ball(sf::RenderWindow* window, float velocity, GameManager* gameManager)
+    : _window(window), _velocity(velocity), _gameManager(gameManager),
     _timeWithPowerupEffect(0.f), _isFireBall(false), _isAlive(true), _direction({1,1})
 {
     _sprite.setRadius(RADIUS);
@@ -62,7 +62,7 @@ void Ball::update(float dt)
     // lose life bounce
     if (position.y > windowDimensions.y)
     {
-        _sprite.setPosition(_paddle->getPosition(), 300);
+        _sprite.setPosition(_gameManager->getPaddle()->getPosition(), 300);
         _direction = { 0.2, 1 };
         _gameManager->loseLife();
     }

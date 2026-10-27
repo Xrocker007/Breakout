@@ -17,7 +17,7 @@ void Paddle::moveLeft(float dt)
 {
     float position = _sprite.getPosition().x;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && position > 0)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && position > 0 && !_isStunned)
     {
         _sprite.move(sf::Vector2f(-dt * PADDLE_SPEED, 0));
     }
@@ -27,7 +27,7 @@ void Paddle::moveRight(float dt)
 {
     float position = _sprite.getPosition().x;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && position < _window->getSize().x - _width)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && position < _window->getSize().x - _width && !_isStunned)
     {
         _sprite.move(sf::Vector2f(dt * PADDLE_SPEED, 0));
     }
@@ -43,6 +43,26 @@ void Paddle::update(float dt)
     {
         setWidth(1.0f, 0.0f); // Reset to default width after duration
     }
+
+    if (_timeStunned > 0)
+    {
+        _timeStunned -= dt;
+    }
+    else
+    {
+        _isStunned = false;
+        _sprite.setFillColor(sf::Color::Cyan);
+    }
+
+
+    // Stun effect
+    if (_isStunned)
+    {
+        // Flickering effect
+        int flicker = rand() % 50 + 205; // Random value between 205 and 255
+        _sprite.setFillColor(sf::Color(0, flicker / 2, flicker / 2)); // Cyan flickering color
+    }
+
 }
 
 void Paddle::render()
@@ -69,4 +89,10 @@ void Paddle::setWidth(float coeff, float duration)
 float Paddle::getPosition()
 {
     return _sprite.getPosition().x;
+}
+
+void Paddle::stun(float duration)
+{
+    _isStunned = true;
+    _timeStunned = duration;
 }

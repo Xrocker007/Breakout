@@ -21,6 +21,11 @@ void BrickManager::createBricks(int rows, int cols, float brickWidth, float bric
             _bricks.emplace_back(x, y, brickWidth, brickHeight);
         }
     }
+
+    for (int i = 0; i < 25; i++)
+    {
+        _bullets.emplace_back(_window, 400.f, _gameManager);
+    }
 }
 
 void BrickManager::render()
@@ -28,7 +33,42 @@ void BrickManager::render()
     for (auto& brick : _bricks) {
         brick.render(*_window);
     }
+
+    for (auto& bullet : _bullets) {
+        bullet.render();
+    }
 }
+
+void BrickManager::update(float dt)
+{
+    for (auto& brick : _bricks) {
+        brick.update(dt);
+    }
+
+    for (auto& bullet : _bullets) {
+        bullet.update(dt);
+    }
+
+    for (auto& brick : _bricks) {
+
+        if (brick._bulletCooldown <= 0)
+        {
+            int chance = rand() % 100 + 1;
+            if (chance < 30 - (_bricks.size()/2))
+            {
+                for (auto& bullet : _bullets) {
+                    if (bullet._isDestroyed)
+                    {
+                        bullet.setPosition(brick.getMiddle());
+                        break;
+                    }
+                }
+            }
+            brick._bulletCooldown = rand() % 5 + 1;
+        }
+    }
+}
+
 
 int BrickManager::checkCollision(sf::CircleShape& ball, sf::Vector2f& direction)
 {

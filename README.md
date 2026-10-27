@@ -32,8 +32,9 @@ You are to spend between three and eight hours improving this simple Breakout im
 
 # Time Details and Changelist
 
-Removed chance of Smallpaddle and FastBall from happening as they are both downgrades. (2 mins)
-Made the ball respawn above the player. (15 mins)
+Removed chance of Smallpaddle and FastBall from happening as they are both downgrades. (2m)
+Made the ball respawn above the player. (15m)
+Added Bullets that spawn from bricks that stun the player (1.5h)
 
 ---
 

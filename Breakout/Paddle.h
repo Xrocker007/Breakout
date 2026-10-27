@@ -18,6 +18,8 @@ public:
 
     float getPosition();
 
+    void stun(float duration);
+
 private:
 
 
@@ -25,5 +27,7 @@ private:
     sf::RectangleShape _sprite;
     float _width = PADDLE_WIDTH;
     bool _isAlive;
+    bool _isStunned = false;
     float _timeInNewSize = 0.0f;
+    float _timeStunned = 0.0f;
 };
