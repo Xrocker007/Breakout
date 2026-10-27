@@ -31,16 +31,16 @@ You are to spend between three and eight hours improving this simple Breakout im
 * Implement commentary with calls to an LLM such as Ollama
 
 # Time Details and Changelist
-_TO DO_
 
-<Add information to this section about the time you've taken for this task along with a professional changelist.>
+Removed chance of Smallpaddle and FastBall from happening as they are both downgrades. (2 mins)
+Made the ball respawn above the player. (15 mins)
 
 ---
 
 ### Change log
 * 2025 - Naman made it harder
 * 2026 - William made it easier again
-
+* 2026 - James see Time Details and Changelist
 ---
 
 Curse you, fast ball!
