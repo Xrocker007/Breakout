@@ -62,8 +62,10 @@ sf::FloatRect Brick::getBounds() const
     return _shape.getGlobalBounds();
 }
 
+
 sf::Vector2f Brick::getMiddle()
 {
     sf::FloatRect bounds = _shape.getGlobalBounds();
     return sf::Vector2f(bounds.left + bounds.width / 2, bounds.top + bounds.height / 2);
+
 }
